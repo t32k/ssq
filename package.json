@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/t32k/ssq/issues"
   },
-  "homepage": "https://github.com/t32k/ssq#readme"
+  "homepage": "https://github.com/t32k/ssq#readme",
+  "dependencies": {
+    "commander": "^2.8.1"
+  }
 }
