@@ -1,17 +1,39 @@
 #!/usr/bin/env node
 
+'use strict';
+
+var fs = require('fs');
 var program = require('commander');
 
 program
-  .version('0.0.1')
-  .option('-p, --peppers', 'Add peppers')
-  .option('-P, --pineapple', 'Add pineapple')
-  .option('-b, --bbq-sauce', 'Add bbq sauce')
-  .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
+  .version(require('../package.json').version)
+  .usage('[options] <file ...>')
   .parse(process.argv);
 
-console.log('you ordered a pizza with:');
-if (program.peppers) console.log('  - peppers');
-if (program.pineapple) console.log('  - pineapple');
-if (program.bbqSauce) console.log('  - bbq');
-console.log('  - %s cheese', program.cheese);
+var json = fs.readFileSync(program.args[0], {
+  encoding: 'utf8'
+});
+
+var data = JSON.parse(json);
+
+var total = {};
+
+data.results.forEach(function (result) {
+  Object.keys(result).forEach(function (key) {
+    if (typeof result[key] === 'number') {
+      if (total[key] === undefined) {
+        total[key] = 0;
+      } else {
+        total[key] += result[key];
+      }
+    }
+  });
+});
+var len = data.results.length;
+
+Object.keys(total).forEach(function (key) {
+  total[key] = total[key] / len;
+});
+
+console.log(total);
+//console.log(data.results.length);

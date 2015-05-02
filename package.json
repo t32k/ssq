@@ -1,5 +1,5 @@
 {
-  "name": "ssq",
+  "name": "stylestats-query",
   "version": "0.1.0",
   "description": "Query for StyleStats.",
   "main": "index.js",
