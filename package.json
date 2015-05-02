@@ -2,25 +2,23 @@
   "name": "stylestats-query",
   "version": "0.1.0",
   "description": "Query for StyleStats.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "Koji Ishimoto <ijok.ijok@gmail.com>",
+  "bin": {
+    "ssq": "bin/cli.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/t32k/ssq.git"
   },
+  "bugs": "https://github.com/t32k/ssq/issues",
+  "homepage": "http://www.stylestats.org/",
   "keywords": [
     "StylesStats",
     "CSS"
   ],
-  "author": "Koji Ishimoto",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/t32k/ssq/issues"
-  },
-  "homepage": "https://github.com/t32k/ssq#readme",
   "dependencies": {
     "commander": "^2.8.1"
-  }
+  },
+  "preferGlobal": true,
+  "license": "MIT"
 }
