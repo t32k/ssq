@@ -9,3 +9,8 @@ npm install -g stylestats-query
 ```shell
 ssq results.json
 ```
+
+### Todos
+
++ term
++ path

@@ -17,7 +17,9 @@
     "CSS"
   ],
   "dependencies": {
-    "commander": "^2.8.1"
+    "commander": "^2.8.1",
+    "numeral": "^1.5.3",
+    "underscore": "^1.8.3"
   },
   "preferGlobal": true,
   "license": "MIT"
