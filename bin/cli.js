@@ -3,6 +3,7 @@
 'use strict';
 
 var fs = require('fs');
+var path = require('path');
 var program = require('commander');
 var Handlebars = require('handlebars');
 
@@ -25,6 +26,13 @@ data.results.forEach(function (result) {
 });
 var len = data.results.length;
 
+
+var file = path.join(__dirname, '../assets/sitemap.hbs');
+var hoge = fs.readFileSync(file, {
+  encoding: 'utf8'
+});
+
+console.log(hoge);
 
 var template = Handlebars.compile('<div>{{foo}}</div>');
 //console.log(template({foo: 'a'}));
