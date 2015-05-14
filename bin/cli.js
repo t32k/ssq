@@ -28,14 +28,12 @@ var len = data.results.length;
 
 
 var file = path.join(__dirname, '../assets/sitemap.hbs');
-var hoge = fs.readFileSync(file, {
+var templateStrings = fs.readFileSync(file, {
   encoding: 'utf8'
 });
 
-console.log(hoge);
-
-var template = Handlebars.compile('<div>{{foo}}</div>');
-//console.log(template({foo: 'a'}));
+var template = Handlebars.compile(templateStrings);
+console.log(template({id: ids}));
 
 
 Object.keys(total).forEach(function (key) {
