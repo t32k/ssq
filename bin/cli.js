@@ -6,10 +6,14 @@ var fs = require('fs');
 var program = require('commander');
 var ssq = require('../lib/ssq');
 
+var moment =  require('moment');
+var numeral =  require('numeral');
+
 program
   .version(require('../package.json').version)
   .usage('[options] <JSON ...>')
-  .option('-S, --sitemap', 'output sitemap.xml')
+  .option('-t, --time', 'set time')
+  .option('-s, --sitemap', 'output sitemap.xml')
   .parse(process.argv);
 
 var data = JSON.parse(fs.readFileSync(program.args[0], {
@@ -37,7 +41,12 @@ data.results.forEach(function (result) {
 });
 
 
-// Create Sitemap.xml
+// Set time
+if (program.time) {
+
+}
+
+// Create sitemap
 if (program.sitemap) {
   ssq.createSitemap('../assets/sitemap.hbs', ids);
 }
