@@ -17,6 +17,7 @@
     "CSS"
   ],
   "dependencies": {
+    "chalk": "^1.0.0",
     "commander": "^2.8.1",
     "handlebars": "^3.0.3",
     "numeral": "^1.5.3",

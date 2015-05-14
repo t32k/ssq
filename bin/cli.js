@@ -3,42 +3,46 @@
 'use strict';
 
 var fs = require('fs');
-var path = require('path');
+
 var program = require('commander');
-var Handlebars = require('handlebars');
+
+var ssq = require('../lib/ssq');
 
 program
   .version(require('../package.json').version)
-  .usage('[options] <file ...>')
+  .usage('[options] <JSON ...>')
+  .option('-S, --sitemap', 'Output sitemap.xml')
   .parse(process.argv);
 
-var json = fs.readFileSync(program.args[0], {
+var data = JSON.parse(fs.readFileSync(program.args[0], {
   encoding: 'utf8'
-});
-
-var data = JSON.parse(json);
+}));
 
 var total = {};
+var len = data.results.length;
 
 var ids = [];
 data.results.forEach(function (result) {
   ids.push(result.objectId);
+  Object.keys(result).forEach(function (key) {
+    if (typeof result[key] === 'number') {
+      if (total[key] === undefined) {
+        total[key] = 0;
+      } else {
+        total[key] += result[key];
+      }
+    }
+  });
 });
-var len = data.results.length;
 
 
-var file = path.join(__dirname, '../assets/sitemap.hbs');
-var templateStrings = fs.readFileSync(file, {
-  encoding: 'utf8'
-});
-
-var template = Handlebars.compile(templateStrings);
-console.log(template({id: ids}));
-
+// Create Sitemap.xml
+if (program.sitemap) {
+  ssq.createSitemap('../assets/sitemap.hbs', ids);
+}
 
 Object.keys(total).forEach(function (key) {
   total[key] = total[key] / len;
 });
 
-//console.log(total);
-//console.log(data.results.length);
+console.log(total);
