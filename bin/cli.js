@@ -19,13 +19,15 @@ var data = JSON.parse(json);
 
 var total = {};
 
+var ids = [];
 data.results.forEach(function (result) {
-  //console.log(result.objectId);
+  ids.push(result.objectId);
 });
 var len = data.results.length;
 
-var template = Handlebars.compile('{{foo}}');
-console.log(template({}));
+
+var template = Handlebars.compile('<div>{{foo}}</div>');
+//console.log(template({foo: 'a'}));
 
 
 Object.keys(total).forEach(function (key) {
