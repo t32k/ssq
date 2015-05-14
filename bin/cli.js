@@ -4,6 +4,7 @@
 
 var fs = require('fs');
 var program = require('commander');
+var Handlebars = require('handlebars');
 
 program
   .version(require('../package.json').version)
@@ -19,21 +20,14 @@ var data = JSON.parse(json);
 var total = {};
 
 data.results.forEach(function (result) {
-  Object.keys(result).forEach(function (key) {
-    if (typeof result[key] === 'number') {
-      if (total[key] === undefined) {
-        total[key] = 0;
-      } else {
-        total[key] += result[key];
-      }
-    }
-  });
+  console.log(result.objectId);
 });
 var len = data.results.length;
+
 
 Object.keys(total).forEach(function (key) {
   total[key] = total[key] / len;
 });
 
-console.log(total);
+//console.log(total);
 //console.log(data.results.length);
