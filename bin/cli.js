@@ -3,15 +3,13 @@
 'use strict';
 
 var fs = require('fs');
-
 var program = require('commander');
-
 var ssq = require('../lib/ssq');
 
 program
   .version(require('../package.json').version)
   .usage('[options] <JSON ...>')
-  .option('-S, --sitemap', 'Output sitemap.xml')
+  .option('-S, --sitemap', 'output sitemap.xml')
   .parse(process.argv);
 
 var data = JSON.parse(fs.readFileSync(program.args[0], {
@@ -23,7 +21,9 @@ var len = data.results.length;
 
 var ids = [];
 data.results.forEach(function (result) {
+
   ids.push(result.objectId);
+
   Object.keys(result).forEach(function (key) {
     if (typeof result[key] === 'number') {
       if (total[key] === undefined) {
@@ -33,6 +33,7 @@ data.results.forEach(function (result) {
       }
     }
   });
+
 });
 
 
@@ -45,4 +46,5 @@ Object.keys(total).forEach(function (key) {
   total[key] = total[key] / len;
 });
 
+console.log('Total Results: ' + len + '\n');
 console.log(total);
