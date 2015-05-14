@@ -20,9 +20,12 @@ var data = JSON.parse(json);
 var total = {};
 
 data.results.forEach(function (result) {
-  console.log(result.objectId);
+  //console.log(result.objectId);
 });
 var len = data.results.length;
+
+var template = Handlebars.compile('{{foo}}');
+console.log(template({}));
 
 
 Object.keys(total).forEach(function (key) {
