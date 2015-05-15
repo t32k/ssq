@@ -12,7 +12,7 @@ var numeral =  require('numeral');
 program
   .version(require('../package.json').version)
   .usage('[options] <JSON ...>')
-  .option('-t, --time', 'set time')
+  .option('-t, --time <format>', 'set time')
   .option('-s, --sitemap', 'output sitemap.xml')
   .parse(process.argv);
 
@@ -40,10 +40,11 @@ data.results.forEach(function (result) {
 
 });
 
+//console.log(moment('2012-10-20').isBetween('2012-10', 'monthly'));
 
 // Set time
 if (program.time) {
-
+  //console.log(program.time);
 }
 
 // Create sitemap
@@ -53,6 +54,7 @@ if (program.sitemap) {
 
 Object.keys(total).forEach(function (key) {
   total[key] = total[key] / len;
+  total[key] =  numeral(total[key]).format('0,0.00');
 });
 
 console.log('Total Results: ' + len + '\n');
