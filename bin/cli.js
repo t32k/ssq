@@ -12,7 +12,7 @@ var numeral =  require('numeral');
 program
   .version(require('../package.json').version)
   .usage('[options] <JSON ...>')
-  .option('-t, --time <format>', 'set time')
+  .option('-t, --time <period>', 'set a period of time')
   .option('-s, --sitemap', 'output sitemap.xml')
   .parse(process.argv);
 
@@ -29,6 +29,9 @@ data.results.forEach(function (result) {
   ids.push(result.objectId);
 
   Object.keys(result).forEach(function (key) {
+
+    //console.log(moment(result.published).isBefore('2015-5-01'));
+
     if (typeof result[key] === 'number') {
       if (total[key] === undefined) {
         total[key] = 0;
