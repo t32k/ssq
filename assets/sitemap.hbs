@@ -8,13 +8,11 @@
   <url>
     <loc>http://www.stylestats.org/search</loc>
     <priority>0.8</priority>
-    <changefreq>yearly</changefreq>
   </url>
   {{#each id}}
   <url>
-    <loc>http://www.stylestats.org/results/{{ id }}</loc>
+    <loc>http://www.stylestats.org/results/{{ this }}</loc>
     <priority>0.5</priority>
-    <changefreq>never</changefreq>
   </url>
   {{/each}}
 </urlset>

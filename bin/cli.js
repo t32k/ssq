@@ -62,6 +62,8 @@ data.results.forEach(function (result) {
 
 });
 
+console.log(ids);
+
 // Create sitemap
 if (program.sitemap) {
   ssq.createSitemap('../assets/sitemap.hbs', ids);
