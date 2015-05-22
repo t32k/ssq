@@ -8,6 +8,7 @@ var ssq = require('../lib/ssq');
 
 var moment = require('moment');
 var numeral = require('numeral');
+var chalk = require('chalk');
 
 program
   .version(require('../package.json').version)
@@ -15,6 +16,11 @@ program
   .option('-t, --time <period>', 'set a period of time')
   .option('-s, --sitemap', 'output sitemap.xml')
   .parse(process.argv);
+
+if (!program.args.length) {
+  console.log(chalk.red('\n No input file specified.'));
+  program.help();
+}
 
 var data = JSON.parse(fs.readFileSync(program.args[0], {
   encoding: 'utf8'
